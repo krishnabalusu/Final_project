@@ -72,27 +72,42 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
-df_filtered = df_coffee.groupby("Country").agg({'UnitPrice': 'sum'})
+# df_filtered = df_coffee.groupby("Country").agg({'UnitPrice': 'sum'})
 
-st.write(
+#st.write(
 '''
-**Your filtered data:**
-''')
+#**Your filtered data:**
+#''')
 
-st.dataframe(df_filtered)
+#st.dataframe(df_filtered)
+st.title('Online Retail Store Analysis')
+
+# Sidebar for user input
+st.sidebar.title('Select Options')
+
+# Provide option to select a country
+selected_country = st.sidebar.selectbox('Select Country', df_coffee['Country'].unique())
+
+# Filter data based on selected country
+filtered_data = df_coffee[df_coffee['Country'] == selected_country]
+
+# Display sales data for the selected country
+st.subheader(f'Sales Data for {selected_country}')
+st.write('Total Sales:', filtered_data['Quantity'].sum())
+
 
 # ------------------------------
 # PART 2 : Plot
 # ------------------------------
 
-st.write(
+#st.write(
 '''
 ## Visualize
-Compare this subset of reviews with the rest of the data.
+#Compare this subset of reviews with the rest of the data.
 '''
 )
 
-st.bar_chart(df_filtered)
+#st.bar_chart(df_filtered)
 
 # fig = plot_sentiment(df_filtered, benchmarks)
 # st.plotly_chart(fig)
