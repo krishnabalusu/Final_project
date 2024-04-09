@@ -121,7 +121,7 @@ st.write(
 ## Custom Sentiment Check
 
 Compare these results with the sentiment scores of your own input.
-'''
+
 )
 
 # text = st.text_input("Write a paragraph, if you like.", 
