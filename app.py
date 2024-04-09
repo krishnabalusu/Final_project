@@ -120,7 +120,7 @@ st.write(
 '''
 ## Custom Sentiment Check
 
-Compare these results with the sentiment scores of your own input.
+# Compare these results with the sentiment scores of your own input.
 
 
 
