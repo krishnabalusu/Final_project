@@ -80,6 +80,7 @@ df_coffee = pd.read_csv("Cleaned.csv")
 
 
 #st.dataframe(df_filtered)
+# Main title
 st.title('Online Retail Store Analysis')
 
 # Sidebar for user input
@@ -94,6 +95,25 @@ filtered_data = df_coffee[df_coffee['Country'] == selected_country]
 # Display sales data for the selected country
 st.subheader(f'Sales Data for {selected_country}')
 st.write('Total Sales:', filtered_data['Quantity'].sum())
+
+# Additional analytics or visualizations for the selected country can be added here
+# For example, you could display a bar chart showing sales trend over time for the selected country
+
+# Calculate and display sales trend over time for the selected country
+sales_over_time = filtered_data.groupby('InvoiceDate')['Quantity'].sum()
+st.subheader('Sales Trend Over Time')
+st.line_chart(sales_over_time)
+
+# Issues section
+st.sidebar.header('Issues')
+st.sidebar.write('1. Ensure data quality and handle missing values or outliers.')
+st.sidebar.write('2. Handle user input validation to prevent errors.')
+
+# Next steps section
+st.sidebar.header('Next Steps')
+st.sidebar.write('1. Enhance user interface with better styling and interactivity.')
+st.sidebar.write('2. Add more advanced analytics and visualizations.')
+st.sidebar.write('3. Deploy the Streamlit app for public access.')
 
 
 # ------------------------------
