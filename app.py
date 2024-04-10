@@ -72,7 +72,7 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
- df_filtered = df_coffee.groupby("Country").agg({'UnitPrice': 'sum'})
+df_filtered = df_coffee.groupby("Country").agg({'UnitPrice': 'sum'})
 
 st.write(
 '''
