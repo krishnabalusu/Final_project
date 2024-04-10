@@ -77,6 +77,7 @@ df_coffee = pd.read_csv("Cleaned.csv")
 st.write(
 '''
 **Your filtered data:**
+'''')
 
 
 st.dataframe(df_filtered)
