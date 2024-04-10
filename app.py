@@ -77,7 +77,7 @@ df_filtered = df_coffee.groupby("Country").agg({'UnitPrice': 'sum'})
 st.write(
 '''
 **Your filtered data:**
-'''')
+''')
 
 
 st.dataframe(df_filtered)
