@@ -87,7 +87,7 @@ st.dataframe(df_filtered)
 # PART 2 : Plot
 # ------------------------------
 
-#st.write(
+st.write(
 '''
 ## Visualize
 Compare this subset of reviews with the rest of the data.
