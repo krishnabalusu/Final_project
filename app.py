@@ -57,7 +57,7 @@ def get_model():
 # ------------------------------
 # PART 0 : Overview
 # ------------------------------
-st.write(
+#st.write(
 '''
 # Review Sentiment Analysis
 We pull data from our Backblaze storage bucket, and render it in Streamlit.
