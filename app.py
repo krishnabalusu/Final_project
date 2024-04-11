@@ -72,50 +72,11 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
-df_filtered = df_coffee.groupby("Country").agg({'UnitPrice': 'sum'})
+# Extract unique countries from the dataset
+countries = df_coffee['Country'].unique()
 
-st.write(
-'''
-**Your filtered data:**
-''')
+# Create a dropdown menu for selecting countries
+selected_country = st.selectbox('Select a country', countries)
 
-
-st.dataframe(df_filtered)
-
-
-# ------------------------------
-# PART 2 : Plot
-# ------------------------------
-
-st.write(
-'''
-## Visualize
-Compare this subset of reviews with the rest of the data.
-'''
-)
-
-st.bar_chart(df_filtered)
-
-# fig = plot_sentiment(df_filtered, benchmarks)
-# st.plotly_chart(fig)
-
-# ------------------------------
-# PART 3 : Analyze Input Sentiment
-# ------------------------------
-
-st.write(
-'''
-## Custom Sentiment Check
-
-# Compare these results with the sentiment scores of your own input.
-'''
-)
-
-
-
-# text = st.text_input("Write a paragraph, if you like.", 
-#                      "Your text here.")
-
-# df_sentiment = get_sentence_sentiment(text, analyzer)
-
-# st.dataframe(df_sentiment)
+# Display the selected country
+st.write('You selected:', selected_country)
