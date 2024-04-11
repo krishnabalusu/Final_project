@@ -92,6 +92,8 @@ sales_over_time = filtered_data.groupby('InvoiceDate')['Quantity'].sum().reset_i
 st.subheader('Sales Trend Over Time')
 st.line_chart(sales_over_time.set_index('InvoiceDate'))
 
-st.write(the application filters the dataset accordingly, extracting sales information relevant to the chosen country. It then computes and displays key metrics, such as the total sales volume, providing users with a snapshot of the retail activity within their selected region.
+st.write('''
+    the application filters the dataset accordingly, extracting sales information relevant to the chosen country. It then computes and displays key metrics, such as the total sales volume, providing users with a snapshot of the retail activity within their selected region.
 
-Furthermore, the application goes beyond simple data presentation by incorporating interactive visualizations. For instance, it generates a dynamic line chart illustrating the sales trend over time for the selected country. This visual representation allows users to discern patterns, fluctuations, and seasonal variations in sales activity, facilitating deeper insights into market dynamics)
+Furthermore, the application goes beyond simple data presentation by incorporating interactive visualizations. For instance, it generates a dynamic line chart illustrating the sales trend over time for the selected country. This visual representation allows users to discern patterns, fluctuations, and seasonal variations in sales activity, facilitating deeper insights into market dynamics
+''')
