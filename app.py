@@ -57,11 +57,7 @@ def get_model():
 # ------------------------------
 # PART 0 : Overview
 # ------------------------------
-#st.write(
-'''
-# Review Sentiment Analysis
-We pull data from our Backblaze storage bucket, and render it in Streamlit.
-''')
+
 
 # df_coffee, benchmarks = get_data()
 # analyzer = get_model()
