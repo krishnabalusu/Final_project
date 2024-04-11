@@ -101,4 +101,10 @@ st.header('Issues')
 st.write("""
  One issue we've encountered is ensuring data quality and handling missing values or outliers. To mitigate this, we plan to carefully inspect the dataset, identify any inconsistencies or anomalies, and implement appropriate data cleaning techniques.
  """)
+st.header('Next Steps')
+st.write("""
+1. Enhance user interface with better styling and interactivity. We aim to improve the visual appeal and usability of the web app by incorporating modern design principles and interactive elements such as dropdown menus, sliders, and buttons.
+
+2. Add more advanced analytics and visualizations. In addition to basic sales data, we plan to integrate more sophisticated analytics techniques such as predictive modeling, clustering, and time series forecasting to provide deeper insights into the online retail store's performance.
+""")
 
