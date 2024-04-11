@@ -97,3 +97,8 @@ st.write('''
 
 Furthermore, the application goes beyond simple data presentation by incorporating interactive visualizations. For instance, it generates a dynamic line chart illustrating the sales trend over time for the selected country. This visual representation allows users to discern patterns, fluctuations, and seasonal variations in sales activity, facilitating deeper insights into market dynamics
 ''')
+st.header('Issues')
+st.write("""
+ One issue we've encountered is ensuring data quality and handling missing values or outliers. To mitigate this, we plan to carefully inspect the dataset, identify any inconsistencies or anomalies, and implement appropriate data cleaning techniques.
+ """)
+
