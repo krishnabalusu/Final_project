@@ -72,17 +72,26 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
-# Extract unique countries from the dataset
-countries = df_coffee['Country'].unique()
+# Main title
+st.title('Online Retail Store Analysis')
 
-# Create a dropdown menu for selecting countries
-selected_country = st.selectbox('Select a country', countries)
+# Sidebar for user input
+st.sidebar.title('Select Options')
 
-# Display the selected country
-st.write('You selected:', selected_country)
-# Filter sales data based on the selected country
-filtered_sales = df_coffee[df_coffee['Country'] == selected_country]
+# Provide option to select a country
+selected_country = st.sidebar.selectbox('Select Country', df_coffee['Country'].unique())
 
-# Display the filtered sales data
-st.write('Sales data for', selected_country)
-st.write(filtered_sales)
+# Filter data based on selected country
+filtered_data = df_coffee[df_coffee['Country'] == selected_country]
+
+# Display sales data for the selected country
+st.subheader(f'Sales Data for {selected_country}')
+st.write('Total Sales:', filtered_data['Quantity'].sum())
+
+# Additional analytics or visualizations for the selected country can be added here
+# For example, you could display a bar chart showing sales trend over time for the selected country
+
+# Calculate and display sales trend over time for the selected country
+sales_over_time = filtered_data.groupby('InvoiceDate')['Quantity'].sum().reset_index()
+st.subheader('Sales Trend Over Time')
+st.line_chart(sales_over_time.set_index('InvoiceDate'))
