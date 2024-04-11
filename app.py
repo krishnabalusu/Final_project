@@ -81,7 +81,7 @@ selected_country = st.selectbox('Select a country', countries)
 # Display the selected country
 st.write('You selected:', selected_country)
 # Filter sales data based on the selected country
-filtered_sales = df[df['Country'] == selected_country]
+filtered_sales = df_coffee[df_coffee['Country'] == selected_country]
 
 # Display the filtered sales data
 st.write('Sales data for', selected_country)
