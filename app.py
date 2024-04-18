@@ -71,6 +71,9 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
+import streamlit as st
+import pandas as pd
+import plotly.express as px
 
 class SalesAnalysis:
     def __init__(self, df_coffee):
@@ -111,11 +114,24 @@ class SalesAnalysis:
                       title=f"Sales Trend over Time for {country}")
         st.plotly_chart(fig)
 
+    def plot_geographical_distribution(self):
+        st.subheader("Geographical Distribution of Sales")
+        sales_by_country = self.df_coffee.groupby('Country')['Quantity'].sum().reset_index()
+        fig = px.choropleth(sales_by_country, 
+                            locations='Country', 
+                            locationmode='country names',
+                            color='Quantity', 
+                            hover_name='Country', 
+                            color_continuous_scale=px.colors.sequential.Plasma,
+                            title='Sales by Country')
+        fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular'))
+        st.plotly_chart(fig)
+
 def main():
     st.title("Sales Performance Analysis")
 
     # Load the dataset
-    
+
 
     # Display dataset
     st.subheader("Dataset")
@@ -135,15 +151,11 @@ def main():
         sales_analysis.plot_product_distribution_bar(country)
         sales_analysis.plot_product_distribution_pie(country)
         sales_analysis.plot_sales_trend(country)
+        sales_analysis.plot_geographical_distribution()
 
 if __name__ == "__main__":
     main()
 
 
-    
-    
-
-
-    
    
        
