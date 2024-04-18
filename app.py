@@ -70,14 +70,14 @@ df_coffee = pd.read_csv("Cleaned.csv")
 
 def load_data(df_coffee):
     try:
-        return df
+        return df_coffee
     except FileNotFoundError:
         print("File not found.")
         return None
 
 # Analysis function
-def calculate_sales_performance(df):
-    sales_performance = df_coffee.groupby('Country')['Sales'].sum()
+def calculate_sales_performance(df_coffee):
+    sales_performance = df_coffee.groupby('Country')['Quantity'].sum()
     return sales_performance
 
 # Visualization functions
@@ -92,9 +92,9 @@ def plot_product_distribution(df_coffee, country):
     st.plotly_chart(fig)
 
 def plot_sales_trend(df_coffee, country):
-    df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'], format='%d-%m-%Y %H:%M')
-    sales_trend = df.resample('M', on='InvoiceDate')['Sales'].sum().reset_index()
-    fig = px.line(sales_trend, x='InvoiceDate', y='Sales',
+    df['InvoiceDate'] = pd.to_datetime(df_coffee['InvoiceDate'], format='%d-%m-%Y %H:%M')
+    sales_trend = df_coffee.resample('M', on='InvoiceDate')['Quantity'].sum().reset_index()
+    fig = px.line(sales_trend, x='InvoiceDate', y='Quantity',
                   labels={'InvoiceDate': 'Date', 'Sales': 'Total Sales'},
                   title=f"Sales Trend over Time for {country}")
     st.plotly_chart(fig)
