@@ -68,43 +68,58 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
-# Main title
-st.title('Online Retail Store Analysis')
+def load_data(df_coffee):
+    try:
+        return df
+    except FileNotFoundError:
+        print("File not found.")
+        return None
 
-# Sidebar for user input
-st.sidebar.title('Select Options')
+# Analysis function
+def calculate_sales_performance(df):
+    sales_performance = df_coffee.groupby('Country')['Sales'].sum()
+    return sales_performance
 
-# Provide option to select a country
-selected_country = st.sidebar.selectbox('Select Country', df_coffee['Country'].unique())
+# Visualization functions
+def plot_sales_performance(sales_performance, country):
+    st.subheader(f"Sales Performance for {country}")
+    st.write(sales_performance)
 
-# Filter data based on selected country
-filtered_data = df_coffee[df_coffee['Country'] == selected_country]
+def plot_product_distribution(df_coffee, country):
+    product_distribution = df.groupby('Description')['Quantity'].sum().reset_index()
+    fig = px.pie(product_distribution, values='Quantity', names='Description',
+                 title=f"Product Category Distribution for {country}")
+    st.plotly_chart(fig)
 
-# Display sales data for the selected country
-st.subheader(f'Sales Data for {selected_country}')
-st.write('Total Sales:', filtered_data['Quantity'].sum())
+def plot_sales_trend(df_coffee, country):
+    df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'], format='%d-%m-%Y %H:%M')
+    sales_trend = df.resample('M', on='InvoiceDate')['Sales'].sum().reset_index()
+    fig = px.line(sales_trend, x='InvoiceDate', y='Sales',
+                  labels={'InvoiceDate': 'Date', 'Sales': 'Total Sales'},
+                  title=f"Sales Trend over Time for {country}")
+    st.plotly_chart(fig)
 
-# Additional analytics or visualizations for the selected country can be added here
-# For example, you could display a bar chart showing sales trend over time for the selected country
+def main():
+    st.title("Sales Performance Analysis")
+    
+    # Load the dataset
+    
+    
+    # Display dataset
+    st.subheader("Dataset")
+    st.dataframe(df_coffee)
+    
+    # Sidebar options
+    st.sidebar.header("Options")
+    country = st.sidebar.selectbox("Select Country", df_coffee['Country'].unique())
+    
+    # Perform analysis based on user input
+    if st.sidebar.button("Analyze"):
+        country_df = df_coffee[df_coffee['Country'] == country]
+        sales_performance = calculate_sales_performance(country_df)
+        plot_sales_performance(sales_performance, country)
+        plot_product_distribution(country_df, country)
+        plot_sales_trend(country_df, country)
 
-# Calculate and display sales trend over time for the selected country
-sales_over_time = filtered_data.groupby('InvoiceDate')['Quantity'].sum().reset_index()
-st.subheader('Sales Trend Over Time')
-st.line_chart(sales_over_time.set_index('InvoiceDate'))
-
-st.write('''
-    The application filters the dataset accordingly, extracting sales information relevant to the chosen country. It then computes and displays key metrics, such as the total sales volume, providing users with a snapshot of the retail activity within their selected region.
-
-Furthermore, the application goes beyond simple data presentation by incorporating interactive visualizations. For instance, it generates a dynamic line chart illustrating the sales trend over time for the selected country. This visual representation allows users to discern patterns, fluctuations, and seasonal variations in sales activity, facilitating deeper insights into market dynamics
-''')
-st.header('Issues')
-st.write("""
- One issue we've encountered is ensuring data quality and handling missing values or outliers. To mitigate this, we plan to carefully inspect the dataset, identify any inconsistencies or anomalies, and implement appropriate data cleaning techniques.
- """)
-st.header('Next Steps')
-st.write("""
-1. Enhance user interface with better styling and interactivity. We aim to improve the visual appeal and usability of the web app by incorporating modern design principles and interactive elements such as dropdown menus, sliders, and buttons.
-
-2. Add more advanced analytics and visualizations. In addition to basic sales data, we plan to integrate more sophisticated analytics techniques such as predictive modeling, clustering, and time series forecasting to provide deeper insights into the online retail store's performance.
-""")
-
+if __name__ == "__main__":
+    main()
