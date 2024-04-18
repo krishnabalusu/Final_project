@@ -96,25 +96,23 @@ def plot_sales_performance(sales_performance, country):
     st.plotly_chart(fig)
 
 # Function to plot product distribution with grouped categories
-def plot_product_distribution(df_coffee, country, group_threshold=0.02):
-    # Group small categories into "Other" category based on threshold
-    total_quantity = df_coffee['Quantity'].sum()
-    df_coffee['Category'] = df_coffee['Description']
-    grouped_categories = df_coffee.groupby('Category')['Quantity'].sum()
-    small_categories = grouped_categories[grouped_categories / total_quantity < group_threshold].index
-    df_coffee.loc[df_coffee['Category'].isin(small_categories), 'Category'] = 'Other'
-    
+# Function to plot product distribution with limited categories
+def plot_product_distribution(df_coffee, country, top_n=10):
     # Group by category and sum quantities
-    df_coffee = df_coffee.groupby('Category')['Quantity'].sum().reset_index()
+    df_coffee = df_coffee.groupby('Description')['Quantity'].sum().reset_index()
+    
+    # Sort categories by quantity and select top N categories
+    df_coffee = df_coffee.sort_values(by='Quantity', ascending=False).head(top_n)
     
     # Plot pie chart
-    fig = px.pie(df_coffee, values='Quantity', names='Category',
-                 title=f"Product Distribution for {country}",
+    fig = px.pie(df_coffee, values='Quantity', names='Description',
+                 title=f"Top {top_n} Product Categories for {country}",
                  width=800, height=500)
     fig.update_traces(textinfo='percent+label')
     fig.update_layout(showlegend=True)
     fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
     st.plotly_chart(fig)
+
 
     
 
