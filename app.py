@@ -151,12 +151,12 @@ def main():
     analyze_button_col, _, _ = st.columns([1, 1, 10])
     with analyze_button_col:
         if st.button("Analyze", key="analyze_button"):
-        sales_performance = sales_analysis.calculate_sales_performance(country)
-        sales_analysis.plot_sales_performance(sales_performance, country)
-        sales_analysis.plot_product_distribution_bar(country)
-        sales_analysis.plot_product_distribution_pie(country)
-        sales_analysis.plot_sales_trend(country)
-        sales_analysis.plot_geographical_distribution()
+         sales_performance = sales_analysis.calculate_sales_performance(country)
+         sales_analysis.plot_sales_performance(sales_performance, country)
+         sales_analysis.plot_product_distribution_bar(country)
+         sales_analysis.plot_product_distribution_pie(country)
+         sales_analysis.plot_sales_trend(country)
+         sales_analysis.plot_geographical_distribution()
         
 
 if __name__ == "__main__":
