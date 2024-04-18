@@ -149,9 +149,7 @@ def main():
     country = st.sidebar.selectbox("Select Country", df_coffee['Country'].unique())
 
     # Perform analysis based on user input
-    analyze_button_col, _, _ = st.columns([1, 1, 10])
-    with analyze_button_col:
-        if st.button("Analyze", key="analyze_button"):
+    if st.sidebar.button("Analyze"):
          sales_performance = sales_analysis.calculate_sales_performance(country)
          sales_analysis.plot_sales_performance(sales_performance, country)
          sales_analysis.plot_product_distribution_bar(country)
