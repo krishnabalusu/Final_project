@@ -5,6 +5,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import pandas as pd
 #import matplotlib.pyplot as plt
+import plotly.express as px
 
 
 
@@ -67,7 +68,6 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # ------------------------------
 # PART 1 : Filter Data
 # ------------------------------
-import plotly.express as px
 
 def load_data(df_coffee):
     try:
