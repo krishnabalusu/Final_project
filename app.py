@@ -138,15 +138,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-   
-        
-
-    
-
-  
-   
-        sales_analysis.plot_sales_trend(country)
-
-if __name__ == "__main__":
-    main()
