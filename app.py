@@ -166,7 +166,7 @@ def main():
         sales_analysis.plot_product_distribution_pie(country)
         sales_analysis.plot_sales_trend(country)
         sales_analysis.plot_geographical_distribution()
-        sales_analysis.plot_customer_distribution()
+        sales_analysis.plot_customer_distribution(country)
 
 if __name__ == "__main__":
     main()
