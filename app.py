@@ -71,6 +71,10 @@ df_coffee = pd.read_csv("Cleaned.csv")
 # PART 1 : Filter Data
 # ------------------------------
 
+import pandas as pd
+import streamlit as st
+import plotly.express as px
+
 class SalesAnalysis:
     def __init__(self, df):
         self.df = df
@@ -88,11 +92,8 @@ class SalesAnalysis:
         st.plotly_chart(fig)
 
     def plot_product_distribution(self, country, top_n=15):
-        # Filter data for the selected country
-        country_df = self.df[self.df['Country'] == country]
-
         # Group by category and sum quantities
-        df = country_df.groupby('Description')['Quantity'].sum().reset_index()
+        df = self.df.groupby('Description')['Quantity'].sum().reset_index()
 
         # Sort categories by quantity and select top N categories
         df = df.sort_values(by='Quantity', ascending=False).head(top_n)
@@ -107,19 +108,28 @@ class SalesAnalysis:
         st.plotly_chart(fig)
 
     def plot_sales_trend(self, country):
-        # Filter data for the selected country
-        country_df = self.df[self.df['Country'] == country]
-
-        country_df['InvoiceDate'] = pd.to_datetime(country_df['InvoiceDate'], format='%Y-%m-%d %H:%M:%S')
-        sales_trend = country_df.resample('M', on='InvoiceDate')['Quantity'].sum().reset_index()
+        self.df['InvoiceDate'] = pd.to_datetime(self.df['InvoiceDate'], format='%Y-%m-%d %H:%M:%S')
+        sales_trend = self.df.resample('M', on='InvoiceDate')['Quantity'].sum().reset_index()
         fig = px.line(sales_trend, x='InvoiceDate', y='Quantity',
                       labels={'InvoiceDate': 'Date', 'Quantity': 'Total Sales'},
                       title=f"Sales Trend over Time for {country}")
         st.plotly_chart(fig)
 
-# Inside the main function
+def main():
+    st.title("Sales Performance Analysis")
+    # Load the dataset
+    
+
     # Create instance of SalesAnalysis class
     sales_analysis = SalesAnalysis(df_coffee)
+
+    # Display dataset
+    st.subheader("Dataset")
+    st.dataframe(df_coffee)
+
+    # Sidebar options
+    st.sidebar.header("Options")
+    country = st.sidebar.selectbox("Select Country", df_coffee['Country'].unique())
 
     # Perform analysis based on user input
     if st.sidebar.button("Analyze"):
@@ -128,7 +138,5 @@ class SalesAnalysis:
         sales_analysis.plot_product_distribution(country)
         sales_analysis.plot_sales_trend(country)
 
-
-
-
-   
+if __name__ == "__main__":
+    main()
