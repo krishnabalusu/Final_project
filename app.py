@@ -97,7 +97,7 @@ def plot_sales_performance(sales_performance, country):
 
 # Function to plot product distribution with grouped categories
 # Function to plot product distribution with limited categories
-def plot_product_distribution(df_coffee, country, top_n=10):
+def plot_product_distribution(df_coffee, country, top_n=15):
     # Group by category and sum quantities
     df_coffee = df_coffee.groupby('Description')['Quantity'].sum().reset_index()
     
@@ -106,6 +106,7 @@ def plot_product_distribution(df_coffee, country, top_n=10):
     
     # Plot pie chart
     fig = px.pie(df_coffee, values='Quantity', names='Description',
+                
                  title=f"Top {top_n} Product Categories for {country}",
                  width=800, height=500)
     fig.update_traces(textinfo='percent+label')
