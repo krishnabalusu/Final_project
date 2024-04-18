@@ -90,7 +90,7 @@ def plot_sales_performance(sales_performance, country):
 
 def plot_sales_performance(sales_performance, country):
     st.subheader(f"Sales Performance for {country}")
-    fig = px.bar(sales_performance, x=sales_performance.index, y='Sales',
+    fig = px.bar(sales_performance, x=sales_performance.index, y='Quantity',
                  labels={'x': 'Country', 'Sales': 'Total Sales'},
                  title=f"Sales Performance for {country}")
     st.plotly_chart(fig)
