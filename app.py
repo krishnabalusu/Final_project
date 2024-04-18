@@ -146,12 +146,5 @@ def main():
         plot_product_distribution(country_df, country)
         plot_sales_trend(country_df, country)
 
-if __name_ == "__main__":
+if _name_ == "_main_":
     main()
-
-
-
-  
-   
-  
-        
