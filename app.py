@@ -1,5 +1,7 @@
 import os
 import pickle
+pip install plotly
+
 
 import streamlit as st
 from dotenv import load_dotenv
