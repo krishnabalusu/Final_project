@@ -102,7 +102,7 @@ def plot_product_distribution(df_coffee, country):
     st.plotly_chart(fig)
 
 def plot_sales_trend(df_coffee, country):
-    df['InvoiceDate'] = pd.to_datetime(df_coffee['InvoiceDate'], format='%Y-%m-%d %H:%M:%S')
+    df_coffee['InvoiceDate'] = pd.to_datetime(df_coffee['InvoiceDate'], format='%Y-%m-%d %H:%M:%S')
     sales_trend = df_coffee.resample('M', on='InvoiceDate')['Quantity'].sum().reset_index()
     fig = px.line(sales_trend, x='InvoiceDate', y='Quantity',
                   labels={'InvoiceDate': 'Date', 'Sales': 'Total Sales'},
