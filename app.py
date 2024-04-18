@@ -95,15 +95,27 @@ def plot_sales_performance(sales_performance, country):
                  title=f"Sales Performance for {country}")
     st.plotly_chart(fig)
 
-def plot_product_distribution(df_coffee, country):
+# Function to plot product distribution with grouped categories
+def plot_product_distribution(df_coffee, country, group_threshold=0.02):
+    # Group small categories into "Other" category based on threshold
+    total_quantity = df_coffee['Quantity'].sum()
+    df_coffee['Category'] = df_coffee['Description']
+    grouped_categories = df_coffee.groupby('Category')['Quantity'].sum()
+    small_categories = grouped_categories[grouped_categories / total_quantity < group_threshold].index
+    df_coffee.loc[df_coffee['Category'].isin(small_categories), 'Category'] = 'Other'
+    
+    # Group by category and sum quantities
+    df_coffee = df_coffee.groupby('Category')['Quantity'].sum().reset_index()
+    
     # Plot pie chart
-    fig = px.pie(df_coffee, values='Quantity', names='Description',
+    fig = px.pie(df_coffee, values='Quantity', names='Category',
                  title=f"Product Distribution for {country}",
-                 width=800, height=500)  # Adjust figure size
-    fig.update_traces(textinfo='percent+label')  # Show percentage and label for each slice
-    fig.update_layout(showlegend=True)  # Show legend
-    fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))  # Adjust legend position
+                 width=800, height=500)
+    fig.update_traces(textinfo='percent+label')
+    fig.update_layout(showlegend=True)
+    fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
     st.plotly_chart(fig)
+
     
 
 def plot_sales_trend(df_coffee, country):
