@@ -127,6 +127,19 @@ class SalesAnalysis:
         fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular'))
         st.plotly_chart(fig)
 
+def plot_customer_distribution(self):
+        st.subheader("Customer Distribution by Country")
+        customer_distribution = self.df_coffee['Country'].value_counts().reset_index()
+        customer_distribution.columns = ['Country', 'Customer Count']
+        fig = px.choropleth(customer_distribution, 
+                            locations='Country', 
+                            locationmode='country names',
+                            color='Customer Count',
+                            hover_name='Country',
+                            color_continuous_scale=px.colors.sequential.Plasma,
+                            title='Customer Distribution by Country')
+        st.plotly_chart(fig)
+
 def main():
     st.title("Sales Performance Analysis")
 
@@ -152,6 +165,7 @@ def main():
         sales_analysis.plot_product_distribution_pie(country)
         sales_analysis.plot_sales_trend(country)
         sales_analysis.plot_geographical_distribution()
+        sales_analysis.plot_customer_distribution()
 
 if __name__ == "__main__":
     main()
