@@ -74,8 +74,8 @@ df_coffee = pd.read_csv("Cleaned.csv")
 
 
 class SalesAnalysis:
-    def __init__(self, df):
-        self.df = df
+    def __init__(self, df_coffee):
+        self.df = df_coffee
 
     def calculate_sales_performance(self, country):
         country_df = self.df[self.df['Country'] == country]
