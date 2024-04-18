@@ -145,9 +145,7 @@ def main():
 
     # Sidebar options
     st.sidebar.header("Options")
-    empty_space_width = (st.sidebar.width - st.sidebar.selectbox_width) / 2
-# Create an empty space to center the selectbox
-    st.sidebar.empty()
+    
     country = st.sidebar.selectbox("Select Country", df_coffee['Country'].unique())
 
     # Perform analysis based on user input
