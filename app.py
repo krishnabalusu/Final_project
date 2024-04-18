@@ -86,7 +86,7 @@ def plot_sales_performance(sales_performance, country):
     st.write(sales_performance)
 
 def plot_product_distribution(df_coffee, country):
-    product_distribution = df.groupby('Description')['Quantity'].sum().reset_index()
+    product_distribution = df_coffee.groupby('Description')['Quantity'].sum().reset_index()
     fig = px.pie(product_distribution, values='Quantity', names='Description',
                  title=f"Product Category Distribution for {country}")
     st.plotly_chart(fig)
