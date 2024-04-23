@@ -117,7 +117,8 @@ class SalesAnalysis:
                       labels={'InvoiceDate': 'Date', 'Quantity': 'Total Sales'},
                       title=f"Sales Trend over Time for {country}")
         st.plotly_chart(fig)
-        st.write('kittu')
+        st.write('This visualization offers insights into the geographical distribution of sales by plotting sales data on a map. It provides a visual representation of where sales are concentrated geographically, allowing for the identification of regions with high or low sales activity. By visualizing sales data on a map, we can uncover patterns related to geographic location, such as areas with dense customer populations or regions with specific market preferences. This information is valuable for targeting marketing efforts, optimizing distribution channels, and identifying opportunities for expansion into new markets.')
+        
     def plot_geographical_distribution(self):
         st.subheader("Geographical Distribution of Sales")
         sales_by_country = self.df_coffee.groupby('Country')['Quantity'].sum().reset_index()
