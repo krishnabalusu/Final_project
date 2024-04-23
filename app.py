@@ -97,6 +97,7 @@ class SalesAnalysis:
                      title=f"Top {top_n} Product Categories for {country}",
                      labels={'Description': 'Product Category', 'Quantity': 'Quantity'})
         st.plotly_chart(fig)
+       
         st.write('kittu')
 
     def plot_product_distribution_pie(self, country, top_n=15):
