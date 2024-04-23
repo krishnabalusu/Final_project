@@ -1,12 +1,6 @@
 # a simple streamlit app
 
-In this tutorial, we:
-
-1. Load a data frame of coffee reviews, clean the data, and prepare it for modeling.
-2. Use sentiment analysis on subsets of this data.
-3. Build a web app which uses this sentiment analysis tool, and test it out locally.
-4. Store data on Backblaze, and connect it to Streamlit.
-5. Host the web app online using Streamlit (and GitHub).
+The purpose of this project was to develop a web application for sales performance analysis using Python and Streamlit. The web app allows users to explore sales data, including total sales, product distribution, sales trends, and customer segmentation. It provides valuable insights into sales patterns and trends, enabling businesses to make informed decisions regarding inventory management, marketing strategies, and market expansion.
 
 ## Prerequisites
 
