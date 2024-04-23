@@ -151,7 +151,7 @@ def main():
     # Sidebar options
     st.sidebar.header("Options")
     st.write(''' The country dropdown menu allows users to select a specific country from the dataset. By selecting a country, users can focus the analysis on sales data from that particular country. This enables them to understand sales performance, product distribution, and trends within a specific market.
- Users may want to analyze sales data for different countries to identify regions with the highest sales volumes, explore market preferences for certain products, or tailor marketing strategies to specific countries.''')
+ It will help users to analyze sales data for different countries to identify regions with the highest sales volumes, explore market preferences for certain products, or tailor marketing strategies to specific countries.''')
     country = st.sidebar.selectbox("Select Country", df_coffee['Country'].unique())
 
     # Perform analysis based on user input
