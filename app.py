@@ -98,7 +98,7 @@ class SalesAnalysis:
                      labels={'Description': 'Product Category', 'Quantity': 'Quantity'})
         st.plotly_chart(fig)
        
-        st.write('kittu')
+        st.write('The Product Distribution in Selected Country visualization displays a pie chart illustrating the distribution of product categories within the selected country. Each segment of the pie represents a product category, and its size indicates the proportion of sales attributed to that category. This visualization allows us to identify which product categories are most popular in the selected country. For instance, if the "Electronics" segment occupies a large portion of the pie, it suggests that electronics are in high demand in that country. This insight helps in inventory management and product planning.')
 
     def plot_product_distribution_pie(self, country, top_n=15):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
