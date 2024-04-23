@@ -87,7 +87,7 @@ class SalesAnalysis:
     def plot_sales_performance(self, sales_performance, country):
         st.subheader(f"Sales Performance for {country}")
         st.write(sales_performance)
-         
+         st.write('kittu')
 
     def plot_product_distribution_bar(self, country, top_n=15):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
