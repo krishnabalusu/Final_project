@@ -91,7 +91,7 @@ class SalesAnalysis:
 st.write('The plot_product_distribution_bar method generates a bar chart displaying the distribution of product categories based on quantities sold in a specific country. By filtering the dataset and grouping the data by product categories, the method identifies the top N product categories with the highest sales volumes. The resulting bar chart visualizes this information, with each bar representing a product category and its height indicating the total quantity sold. This visualization enables businesses to identify popular product categories, understand market preferences, and make strategic decisions regarding inventory management and marketing strategies tailored to meet customer demands.')
 
 
-    def plot_product_distribution_bar(self, country, top_n=15):
+     def plot_product_distribution_bar(self, country, top_n=15):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
         df_product = country_df.groupby('Description')['Quantity'].sum().reset_index()
         df_product = df_product.sort_values(by='Quantity', ascending=False).head(top_n)
