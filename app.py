@@ -107,8 +107,7 @@ class SalesAnalysis:
         fig = px.pie(df_product, values='Quantity', names='Description',
                      title=f"Top {top_n} Product Categories for {country}")
         st.plotly_chart(fig)
-
-    
+  
    def plot_sales_trend(self, country):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
         country_df['InvoiceDate'] = pd.to_datetime(country_df['InvoiceDate'], format='%Y-%m-%d %H:%M:%S')
