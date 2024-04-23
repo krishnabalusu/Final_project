@@ -87,7 +87,7 @@ class SalesAnalysis:
     def plot_sales_performance(self, sales_performance, country):
         st.subheader(f"Sales Performance for {country}")
         st.write(sales_performance)
-        st.write('The plot_product_distribution_bar method generates a bar chart displaying the distribution of product categories based on quantities sold in a specific country. By filtering the dataset and grouping the data by product categories, the method identifies the top N product categories with the highest sales volumes. The resulting bar chart visualizes this information, with each bar representing a product category and its height indicating the total quantity sold. This visualization enables businesses to identify popular product categories, understand market preferences, and make strategic decisions regarding inventory management and marketing strategies tailored to meet customer demands.')
+        st.write('The bar chart depicts information about the distribution of product categories based on quantities sold in a specific country. By filtering the dataset and grouping the data by product categories, the method identifies the top 15 product categories with the highest sales volumes. The resulting bar chart visualizes this information, with each bar representing a product category and its height indicating the total quantity sold. This visualization enables businesses to identify popular product categories, understand market preferences, and make strategic decisions regarding inventory management and marketing strategies tailored to meet customer demands.')
 
     def plot_product_distribution_bar(self, country, top_n=15):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
@@ -97,6 +97,7 @@ class SalesAnalysis:
                      title=f"Top {top_n} Product Categories for {country}",
                      labels={'Description': 'Product Category', 'Quantity': 'Quantity'})
         st.plotly_chart(fig)
+        st.write('kittu')
 
     def plot_product_distribution_pie(self, country, top_n=15):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
