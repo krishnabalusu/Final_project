@@ -117,7 +117,7 @@ class SalesAnalysis:
                       labels={'InvoiceDate': 'Date', 'Quantity': 'Total Sales'},
                       title=f"Sales Trend over Time for {country}")
         st.plotly_chart(fig)
-
+        st.write('kittu')
     def plot_geographical_distribution(self):
         st.subheader("Geographical Distribution of Sales")
         sales_by_country = self.df_coffee.groupby('Country')['Quantity'].sum().reset_index()
