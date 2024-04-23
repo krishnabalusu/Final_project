@@ -107,6 +107,7 @@ class SalesAnalysis:
         fig = px.pie(df_product, values='Quantity', names='Description',
                      title=f"Top {top_n} Product Categories for {country}")
         st.plotly_chart(fig)
+        st.write('The Sales Trend Over Time in Selected Country visualization presents a line chart depicting the sales trend over a specified period for the selected country. The x-axis represents time (e.g., months or years), and the y-axis represents sales volume. This visualization enables us to observe patterns and trends in sales over time. For instance, if the line shows a steady increase in sales from January to December, it indicates a positive sales trend throughout the year. Conversely, if there are fluctuations or a downward trend, it suggests seasonal variations or potential issues affecting sales.')
   
     def plot_sales_trend(self, country):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
