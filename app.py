@@ -150,7 +150,7 @@ def main():
 
     # Sidebar options
     st.sidebar.header("Options")
-    
+    st.write('kittu')
     country = st.sidebar.selectbox("Select Country", df_coffee['Country'].unique())
 
     # Perform analysis based on user input
