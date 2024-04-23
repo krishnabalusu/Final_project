@@ -109,7 +109,7 @@ class SalesAnalysis:
         st.plotly_chart(fig)
 
     
-def plot_sales_trend(self, country):
+  def plot_sales_trend(self, country):
         country_df = self.df_coffee[self.df_coffee['Country'] == country]
         country_df['InvoiceDate'] = pd.to_datetime(country_df['InvoiceDate'], format='%Y-%m-%d %H:%M:%S')
         sales_trend = country_df.resample('M', on='InvoiceDate')['Quantity'].sum().reset_index()
