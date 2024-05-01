@@ -132,19 +132,15 @@ class SalesAnalysis:
         fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular'))
         st.plotly_chart(fig)
 
-def calculate_least_sales_product_categories(df_coffee, country, top_n=10):
-    country_df = df_coffee[df_coffee['Country'] == country]
+def plot_least_sales_product_categories(self, country, top_n=10):
+    country_df = self.df_coffee[self.df_coffee['Country'] == country]
     df_product = country_df.groupby('Description')['Quantity'].sum().reset_index()
     df_product = df_product.sort_values(by='Quantity', ascending=True).head(top_n)
-    return df_product
-
-# Plot least sales product categories
-def plot_least_sales_product_categories(df_product, country):
-    st.subheader(f"Least Sales Product Categories for {country}")
     fig = px.bar(df_product, x='Description', y='Quantity', 
-                 title=f"Least Sales Product Categories for {country}",
+                 title=f"Least {top_n} Sales Product Categories for {country}",
                  labels={'Description': 'Product Category', 'Quantity': 'Quantity'})
     st.plotly_chart(fig)
+
 
 
 
@@ -176,7 +172,7 @@ def main():
          sales_analysis.plot_product_distribution_pie(country)
          sales_analysis.plot_sales_trend(country)
          sales_analysis.plot_geographical_distribution()
-         sales_analysis.plot_least_sales_product_categories(df_product,country)
+         sales_analysis.plot_least_sales_product_categories(country)
         
 
 if __name__ == "__main__":
