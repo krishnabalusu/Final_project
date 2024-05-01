@@ -132,7 +132,7 @@ class SalesAnalysis:
         fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular'))
         st.plotly_chart(fig)
 
-def plot_least_sales_product_categories(self, country, top_n=10):
+ def plot_least_sales_product_categories(self, country, top_n=10):
     country_df = self.df_coffee[self.df_coffee['Country'] == country]
     df_product = country_df.groupby('Description')['Quantity'].sum().reset_index()
     df_product = df_product.sort_values(by='Quantity', ascending=True).head(top_n)
