@@ -176,7 +176,7 @@ def main():
          sales_analysis.plot_product_distribution_pie(country)
          sales_analysis.plot_sales_trend(country)
          sales_analysis.plot_geographical_distribution()
-         sales_analysis.plot_least_sales_product_categories()
+         sales_analysis.plot_least_sales_product_categories(df_product,country)
         
 
 if __name__ == "__main__":
