@@ -132,13 +132,6 @@ class SalesAnalysis:
         fig.update_layout(geo=dict(showframe=False, showcoastlines=False, projection_type='equirectangular'))
         st.plotly_chart(fig)
 
-def plot_least_sales_product_distribution_pie(self, country, top_n=15):
-        country_df = self.df_coffee[self.df_coffee['Country'] == country]
-        df_product = country_df.groupby('Description')['Quantity'].sum().reset_index()
-        df_product = df_product.sort_values(by='Quantity', ascending=True).head(top_n)
-        fig = px.pie(df_product, values='Quantity', names='Description',
-                     title=f"Least {top_n} Product Categories for {country}")
-        st.plotly_chart(fig)
 
 
 
@@ -171,7 +164,7 @@ def main():
          sales_analysis.plot_product_distribution_pie(country)
          sales_analysis.plot_sales_trend(country)
          sales_analysis.plot_geographical_distribution()
-         sales_analysis.plot_least_sales_product_distribution_pie(country)
+         
         
 
 if __name__ == "__main__":
